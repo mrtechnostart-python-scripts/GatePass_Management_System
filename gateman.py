@@ -79,7 +79,7 @@ def main():
 						if check_otp(userName,userOTP):
 							st.success("You Can Go! OTP is Correct! Good Journeys {}".format(userName))
 						else:
-							st.warning("Tumhri Maa Ki Chut!")
+							st.warning("Invalid OTP!")
 							
 				elif task == "Remove Gate Pass":
 					userName = st.text_input("Enter User Name")
