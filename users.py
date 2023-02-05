@@ -57,6 +57,14 @@ def applyPass(username,otp,dateTime,returnTime):
 	gatePass.commit()
 	st.success("Gate Pass Applied Successfully")
 	st.success("Your OTP is {}".format(otp))
+
+
+def applyHomePass(username,otp,dateTime,returnTime):
+	gate.execute('INSERT INTO marketPassTable(username,otp,datetime,expectedDateTime) VALUES (?,?,?,?)',(username,otp,dateTime[0]+" "+dateTime[1],returnTime[0]+" "+returnTime[1]))
+	gatePass.commit()
+	st.success("Home Pass Applied Successfully")
+	st.success("Your OTP is {}".format(otp))
+
 def main():
 	"""Simple Login App"""
 
@@ -80,7 +88,7 @@ def main():
 			result = login_user(username,check_hashes(password,hashed_pswd))
 			if result:
 				st.success("Logged in as {}".format(username))
-				task = st.selectbox("Tasks",["Apply Gate Pass"])
+				task = st.selectbox("Tasks",["Apply Gate Pass","Apply Home Pass"])
 				if task == "Apply Gate Pass":
 					otp = randomGenerator()
 					dateTime = getDateTime()
@@ -92,6 +100,19 @@ def main():
 							gate.execute('SELECT otp FROM marketPassTable WHERE username =?',(username,))
 							data = gate.fetchall()
 							st.warning("Already Applied, Cancel First, OTP = {}".format(data[0][0]))
+				elif task == "Apply Market Pass":
+					otp = randomGenerator()
+					dateTime = getDateTime()
+					returnDate = str(st.date_input("Input Date"))
+					returnTime = [returnDate,"22:00"]
+					if st.button("Apply Now!"):
+						if isapplied(username):
+							applyHomePass(username,otp,dateTime,returnTime)
+						else:
+							gate.execute('SELECT otp FROM marketPassTable WHERE username =?',(username,))
+							data = gate.fetchall()
+							st.warning("Already Applied, Cancel First, OTP = {}".format(data[0][0]))
+
 			else:
 				st.warning("Invalid Username/Password")							
 
