@@ -100,7 +100,7 @@ def main():
 							gate.execute('SELECT otp FROM marketPassTable WHERE username =?',(username,))
 							data = gate.fetchall()
 							st.warning("Already Applied, Cancel First, OTP = {}".format(data[0][0]))
-				elif task == "Apply Market Pass":
+				elif task == "Apply Home Pass":
 					otp = randomGenerator()
 					dateTime = getDateTime()
 					returnDate = str(st.date_input("Input Date"))
