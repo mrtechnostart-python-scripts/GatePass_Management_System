@@ -31,18 +31,20 @@ def inputUserData():
 	username = st.text_input("Enter Student Name ")
 	password = st.text_input("Enter Password")
 	hashed_passwd = make_hashes(password)
-	addUser(username,hashed_passwd)
+	if st.button("Create User"):
+		addUser(username,hashed_passwd)
 
 def inputWatchManData():
 	username = st.text_input("Enter WatchMen Name")
 	password = st.text_input("Enter Password")
 	hashed_passwd = make_hashes(password)
-	watchMan(username,hashed_passwd)
-userChoice = int(st.text_input("Press 1 For Creating User and 2 for watchman"))
+	if st.button("Create Watchmen Persun"):
+		watchMan(username,hashed_passwd)
+userChoice = st.text_input("Press 1 For Creating User and 2 for watchman")
 if st.button("Submit"):
-	if userChoice == 1:
+	if userChoice == "1":
 		inputUserData()
-	elif userChoice == 2:
+	elif userChoice == "2":
 		inputWatchManData()
 		
 
