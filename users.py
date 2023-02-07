@@ -68,7 +68,7 @@ def applyHomePass(username,otp,dateTime,returnTime):
 def main():
 	"""Simple Login App"""
 
-	st.title("Simple Login App")
+	st.title("Student's GatePass Dashboard")
 
 	menu = ["Home","Login"]
 	choice = st.sidebar.selectbox("Menu",menu)

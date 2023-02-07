@@ -50,7 +50,7 @@ def deleteData(username,userOTP):
 def main():
 	"""Simple Login App"""
 
-	st.title("Simple Login App")
+	st.title("WatchMan GatePass Dashboard")
 
 	menu = ["Home","Login"]
 	choice = st.sidebar.selectbox("Menu",menu)
