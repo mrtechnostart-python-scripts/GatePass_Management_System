@@ -88,8 +88,6 @@ def main():
 					if st.button("Submit: "):
 						deleteData(userName,userOTP)
 def hideFooter():
-    with Image.open("favicon.ico") as icon:
-        st.set_page_config(page_title="ApploGen(beta)",page_icon=icon)
     hide_streamlit_style = """
             <style>
             #MainMenu {visibility: hidden;}
