@@ -1,5 +1,4 @@
 import hashlib
-import streamlit as st
 import sqlite3
 conn = sqlite3.connect("users.db")
 c = conn.cursor()
@@ -28,23 +27,20 @@ def watchMan(username,password):
 
 
 def inputUserData():
-	username = st.text_input("Enter Student Name ")
-	password = st.text_input("Enter Password")
+	username = input("Enter Student Name ")
+	password = input("Enter Password")
 	hashed_passwd = make_hashes(password)
-	if st.button("Create User"):
-		addUser(username,hashed_passwd)
+	addUser(username,hashed_passwd)
 
 def inputWatchManData():
-	username = st.text_input("Enter WatchMen Name")
-	password = st.text_input("Enter Password")
+	username = input("Enter WatchMen Name")
+	password = input("Enter Password")
 	hashed_passwd = make_hashes(password)
-	if st.button("Create Watchmen Persun"):
-		watchMan(username,hashed_passwd)
-userChoice = st.text_input("Press 1 For Creating User and 2 for watchman")
-if st.button("Submit"):
-	if userChoice == "1":
-		inputUserData()
-	elif userChoice == "2":
-		inputWatchManData()
+	watchMan(username,hashed_passwd)
+userChoice = input("Press 1 For Creating User and 2 for watchman")
+if userChoice == "1":
+	inputUserData()
+elif userChoice == "2":
+	inputWatchManData()
 		
 
